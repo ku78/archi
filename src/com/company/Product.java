@@ -1,11 +1,14 @@
 package com.company;
 
-public class Product {
-    public int price;
+public class Product implements ThingForSale {
+    public double price;
     public String name;
     public String category;
 
-    public void setPrice(int price){
+    public double fullCosts, profit, count;
+
+    @Override
+    public void setPrice(double price){
         this.price = price;
     }
 
@@ -24,5 +27,18 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
                 '}';
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getOptimalPriceForProduct() {
+        // Цена = (Полные затраты + Прибыль) / Количество товара
+        return (fullCosts + profit) / count;
+    }
+
+    public double getDoublePrice() {
+        return price * 2;
     }
 }
